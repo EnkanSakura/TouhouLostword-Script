@@ -1,8 +1,9 @@
 # -*- encoding=utf8 -*-
 
+__author__ = "落子w"
+
 import sys
 sys.path.append("..")
-from airtest.core.api import *
 from battle import *
 
 def still_alive():
