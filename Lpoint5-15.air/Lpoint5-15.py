@@ -15,15 +15,15 @@ def enter_stage():
         if item_detail():
             touch([121, 48])    #返回
             return False
-        else:
-            return True
-        
+    
     touch([1589, 480])
     sleep(7.0)
     touch([1840, 929])  #出发
     sleep(20.0)
+    return True
 
 def normal_battle():
+#     global battle_times
     #妖梦
     skill()
     useskill(1, 1)  #1技能
@@ -57,12 +57,17 @@ def normal_battle():
     touch([1119, 263])
     touch([1064, 377], times=6)
     
-    sleep(30)
+#     battle_times = battle_times + 1
+#     sleep(20)
 #
 
 auto_setup(__file__)
-
-for i in range(100):
+# battle_times=0
+# total_times=0
+while(True):
+#     print(total_times)
+#     print(battle_times)
+#     total_times = total_times + 1
     if exists(Template(r"tpl1590049993151.png", threshold=0.8, record_pos=(0.275, -0.197), resolution=(2244, 1080))):
         normal_battle()
         continue
@@ -76,3 +81,4 @@ for i in range(100):
         continue
     else:
         normal_battle()
+
