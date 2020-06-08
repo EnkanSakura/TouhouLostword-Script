@@ -2,15 +2,15 @@ from airtest.core.api import *
 
 def graze(t=1): #擦蛋，t为graze次数
     touch([1972, 605],times=t)
-    sleep(0.8)
+    sleep(0.6)
 
 def boost(t=1): #爆发，t为boost次数
     touch([1853, 863],times=t)
-    sleep(0.8)
+    sleep(0.6)
 
 def change():   #换人
     touch([1931, 101])
-    sleep(2.5)
+    sleep(3.0)
     
 def spellcard(no):  #符卡，no为卡的序号
     touch([360, 706])
@@ -29,7 +29,7 @@ def spellcard(no):  #符卡，no为卡的序号
 
 def skill():    #打开/关闭技能面板
     touch([2075, 790])
-    sleep(0.8)
+    sleep(0.7)
 
 def useskill(r, s): #使用技能，r为角色次序，s为技能次序
     if r == 1:
@@ -53,16 +53,16 @@ def useskill(r, s): #使用技能，r为角色次序，s为技能次序
             touch([1733, 881])
         else:
             touch([1862, 879])
-    sleep(0.6)
+    sleep(0.2)
     touch([1416, 831])
-    sleep(0.8)
+    sleep(0.3)
 
 def shoot(s):   #弹幕，s为扩散1或集中2
     if s == 1:
         touch([761, 888])
     else:
         touch([1381, 877])
-    sleep(0.5)
+    sleep(0.4)
 
 def run_away(): #离开战斗（逃げるだよ）
     touch([1193, 38])

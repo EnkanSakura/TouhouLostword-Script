@@ -22,7 +22,7 @@ def enter_stage():
             return False
     
     touch(stage)
-    sleep(7.0)
+    sleep(8.0)
     touch([1840, 929])  #出发
     sleep(20.0)
     return True
