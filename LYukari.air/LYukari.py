@@ -15,20 +15,26 @@ from battle import *
 def still_alive():
     graze()
     boost(1)
-    shoot(2)
-    sleep(8)
+    shoot(1)
+    sleep(8.0)
 
 def normal_battle():
     skill()
     useskill(1, 1)
-    skill()
-    change()
-    skill()
-    useskill(1, 1)
     useskill(1, 2)
     skill()
-    graze(3)
-    boost(2)
+    graze(1)
+    spellcard(3)
+    sleep(10.0)
+    while not(exists(Template(r"tpl1591944351290.png", threshold=0.9, record_pos=(0.297, -0.194), resolution=(2244, 1080)))):
+        sleep(2.0)
+    graze(1)
+    spellcard(4)
+    sleep(10.0)
+    while not(exists(Template(r"tpl1591944351290.png", threshold=0.9, record_pos=(0.297, -0.194), resolution=(2244, 1080)))):
+        sleep(2.0)
+    graze(1)
+    boost(3)
     spellcard(5)
     sleep(15.0)
     
@@ -45,7 +51,7 @@ def normal_battle():
     else:
         touch(battle_end)
         return True
-        
+
 def enter_stage():
     try:
         stage = wait(Template(r"tpl1591584800196.png", threshold=0.8, record_pos=(0.206, -0.107), resolution=(2244, 1080)), timeout=10, interval=3)
@@ -59,9 +65,10 @@ def enter_stage():
     sleep(20.0)
 
     
+    
 while(True):
     
-    if exists(Template(r"tpl1591585447576.png", threshold=0.75, record_pos=(0.354, -0.187), resolution=(2244, 1080))):
+    if exists(Template(r"tpl1591944351290.png", threshold=0.9, record_pos=(0.297, -0.194), resolution=(2244, 1080))):
         normal_battle()
     try:
         again = wait(Template(r"tpl1591584772117.png", record_pos=(-0.328, 0.197), resolution=(2244, 1080)), timeout=5, interval=2)
@@ -70,8 +77,9 @@ while(True):
     else:
         touch(again)
         sleep(10.0)
-    
-
-
+    if water():
+        break
+# Template(r"tpl1591585447576.png", threshold=0.75, record_pos=(0.354, -0.187), resolution=(2244, 1080))
+# 
 
     

@@ -1,5 +1,7 @@
 from airtest.core.api import *
 
+Watered = False	#两滴水标记
+
 def graze(t=1): #擦蛋，t为graze次数
     touch([1972, 605],times=t)
     sleep(0.6)
@@ -81,6 +83,12 @@ def inte_fail():    #网络异常
 def item_detail():  #点到物品详细
     if exists(Template(r"../tpl1589627182286.png", record_pos=(-0.001, -0.111), resolution=(2244, 1080))):
         touch([1122, 762])
+        return True
+    return False
+
+def water():	#再 起 不 能
+    if exists(Template(r"../tpl1591760727159.png", record_pos=(-0.003, 0.037), resolution=(2244, 1080))):
+        Watered = True
         return True
     return False
 
