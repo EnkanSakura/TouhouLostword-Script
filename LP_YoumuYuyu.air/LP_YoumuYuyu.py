@@ -6,14 +6,22 @@ import sys
 sys.path.append("..")
 from battle import *
 
-
-stage_pic = Template(r"tpl1592891651875.png", record_pos=(0.205, -0.132), resolution=(2244, 1080))
-groupA = Template(r"tpl1593664257940.png", threshold=0.9, record_pos=(-0.143, 0.215), resolution=(2244, 1080))
-groupB = Template(r"tpl1593664352558.png", threshold=0.9, record_pos=(-0.143, 0.215), resolution=(2244, 1080))
-A2B_times = 1
+Watered = False
+stage_pic = Template(r"tpl1595556252557.png", threshold=0.9, record_pos=(0.206, -0.054), resolution=(2244, 1080))
+boss = Template(r"tpl1595556629593.png", threshold=0.8, record_pos=(-0.329, -0.2), resolution=(2244, 1080))
+group=[
+    Template(r"tpl1595556306417.png", threshold=0.9, record_pos=(-0.037, 0.189), resolution=(2244, 1080)),
+    Template(r"tpl1595556326285.png", threshold=0.9, record_pos=(-0.037, 0.189), resolution=(2244, 1080)),
+    Template(r"tpl1595556341359.png", threshold=0.9, record_pos=(-0.037, 0.188), resolution=(2244, 1080))
+]
+next_group = [1397, 638]
+pre_group = [220, 640]
 
 
 def enter_stage():
+    global group
+    global stage_pic
+    global Watered
     try:
         stage_pos = wait(stage_pic, timeout=10)
     except TargetNotFoundError:
@@ -21,25 +29,30 @@ def enter_stage():
         if item_detail():
             touch([121, 48])    #返回
             return False
-    touch(stage_pos)
-    sleep(7.0)
+    else:
+        touch(stage_pos)
+        sleep(7.0)
     if Watered:
-        if exists(groupA):
-            touch([1392, 642], times=A2B_times)
-        elif exists(groupB):
-            touch([208, 633], times=A2B_times)
+        if exists(group[0]):
+            touch(next_group)
+        elif exists(group[1]):
+            touch(next_group)
+        elif exists(group[2]):
+            touch(pre_group, times=2)
         else:
             return False
+        Watered = False
+        sleep(2.0)
     touch([1840, 929])  #出发
     sleep(20.0)
     return True
 
 def normal_battle():
-    #妖梦/UUZ
-    skill()
-    useskill(1, 1)  #1技能
-    useskill(1, 2)  #2技能
-    skill()
+    #妖梦/UUZ/蓝
+#     skill()
+#     useskill(1, 1)  #1技能
+#     useskill(1, 2)  #2技能
+#     skill()
     graze(3)
     boost(1)
     spellcard(5)    #1p3gLW
@@ -58,11 +71,12 @@ def normal_battle():
 
 auto_setup(__file__)
 while(True):
-    if exists(Template(r"tpl1592891418830.png", threshold=0.8, record_pos=(-0.322, -0.198), resolution=(2244, 1080))):
+    if exists(boss):
         normal_battle()
         continue
     else:
         if water():
+            Watered = True
             touch([900, 875])   #Template(r"tpl1593663414826.png", record_pos=(-0.095, 0.16), resolution=(2244, 1080))
             touch([1985, 959])  #Template(r"../tpl1592892121177.png", record_pos=(0.377, 0.194), resolution=(2244, 1080))
             enter_stage()

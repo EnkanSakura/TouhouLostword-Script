@@ -87,6 +87,7 @@ def item_detail():  #点到物品详细
     return False
 
 def water():	#再 起 不 能
+    global Watered
     if exists(Template(r"../tpl1591760727159.png", record_pos=(-0.003, 0.037), resolution=(2244, 1080))):
         Watered = True
         return True
